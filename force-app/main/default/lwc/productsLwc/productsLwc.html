@@ -1,5 +1,21 @@
 <template>
     <div class="table slds-p-around_small">
+        <template for:each={catalogs} for:item="catalog" for:index="catalogIndex">
+            <ul key={catalog.Id} class="slds-grid slds-gutters table-tbody">
+                <li class="slds-size_1-of-8 slds-p-vertical_xx-small">{catalog.Name}</li>
+                <li class="slds-size_1-of-8 slds-p-vertical_xx-small">{catalog.NumberOfCategories}</li>
+            </ul>
+        
+            <template for:each={catalog.ContainedCategories} for:item="category" for:index="categoryIndex">
+                <ul key={catalog.Id} class="slds-grid slds-gutters table-tbody">
+                    <li class="slds-size_1-of-8 slds-p-vertical_xx-small">{category.Name}</li>
+                </ul>
+            </template>
+
+        </template>
+    </div>
+
+    <div class="table slds-p-around_small">
         <ul class="slds-grid slds-gutters table-thead">
             <li class="slds-size_1-of-8 slds-p-vertical_xx-small">Картинка</li>
             <li class="slds-size_1-of-8 slds-p-vertical_xx-small">Артикул</li>
@@ -20,4 +36,6 @@
             </ul>
         </template>
     </div>
+
+    добавить удалить переименовать подкатегорию
 </template>
