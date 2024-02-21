@@ -1,0 +1,23 @@
+<template>
+    <div class="table slds-p-around_small">
+        <ul class="slds-grid slds-gutters table-thead">
+            <li class="slds-size_1-of-8 slds-p-vertical_xx-small">Картинка</li>
+            <li class="slds-size_1-of-8 slds-p-vertical_xx-small">Артикул</li>
+            <li class="slds-size_3-of-8 slds-p-vertical_xx-small">Название</li>
+            <li class="slds-size_1-of-8 slds-p-vertical_xx-small">Штрихкод</li>
+            <li class="slds-size_1-of-8 slds-p-vertical_xx-small">Цена</li>
+            <li class="slds-size_1-of-8 slds-p-vertical_xx-small">Количество</li>
+        </ul>
+
+        <template for:each={products} for:item="product" for:index="index">
+            <ul key={product.Id} class="slds-grid slds-gutters table-tbody">
+                <li class="slds-size_1-of-8 slds-p-vertical_xx-small">Картинка</li>
+                <li class="slds-size_1-of-8 slds-p-vertical_xx-small">{product.Article__c}</li>
+                <li class="slds-size_3-of-8 slds-p-vertical_xx-small">{product.Name}</li>
+                <li class="slds-size_1-of-8 slds-p-vertical_xx-small">{product.ProductCode}</li>
+                <li class="slds-size_1-of-8 slds-p-vertical_xx-small">Цена</li>
+                <li class="slds-size_1-of-8 slds-p-vertical_xx-small">Количество</li>
+            </ul>
+        </template>
+    </div>
+</template>
