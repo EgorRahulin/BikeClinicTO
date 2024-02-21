@@ -1,0 +1,8 @@
+.sf
+.sfdx
+config
+.forceignore
+manifest/package.xml
+force-app/main/default/lwc/jsconfig.json
+sfdx-project.json
+README.md
