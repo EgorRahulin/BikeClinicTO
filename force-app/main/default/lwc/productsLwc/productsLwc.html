@@ -1,17 +1,114 @@
 <template>
     <div class="table slds-p-around_small">
-        <template for:each={catalogs} for:item="catalog" for:index="catalogIndex">
-            <ul key={catalog.Id} class="slds-grid slds-gutters table-tbody">
-                <li class="slds-size_1-of-8 slds-p-vertical_xx-small">{catalog.Name}</li>
-                <li class="slds-size_1-of-8 slds-p-vertical_xx-small">{catalog.NumberOfCategories}</li>
-            </ul>
-        
-            <template for:each={catalog.ContainedCategories} for:item="category" for:index="categoryIndex">
-                <ul key={catalog.Id} class="slds-grid slds-gutters table-tbody">
-                    <li class="slds-size_1-of-8 slds-p-vertical_xx-small">{category.Name}</li>
-                </ul>
-            </template>
+        <lightning-input
+            data-name="resourceName"
+            label=''
+            class='slds-size_1-of-1'
+            maxlength='255'
+            type='text'
+            value={newCatalogName}
+            onchange={handleNewCatalogNameChange}
+            field-level-help=''
+            required
+            autocomplete="off">
+        </lightning-input>
 
+        <lightning-button 
+            variant="brand" 
+            label='Добавить каталог' 
+            onclick={createCatalog}>
+        </lightning-button>
+
+        <lightning-button 
+            variant="brand" 
+            label='Переименовать каталоги' 
+            onclick={handleRenameCatalog}>
+        </lightning-button>
+        
+        <lightning-button 
+            variant="brand" 
+            label='Переименовать категории' 
+            onclick={handleRenameCategories}>
+        </lightning-button>
+    
+        <template for:each={catalogs} for:item="catalog" for:index="catalogIndex">
+            <div key={catalog.Id}>
+                <ul class="slds-grid slds-gutters table-tbody slds-box">
+                    <li class="slds-size_2-of-8 slds-p-vertical_xx-small">{catalog.Name}</li>
+                    <li class="slds-size_2-of-8 slds-p-vertical_xx-small">
+                        <lightning-input
+                            data-name="catalogName"
+                            label='Название каталога'
+                            class='slds-size_1-of-1'
+                            maxlength='255'
+                            type='text'
+                            data-id={catalog.Id}
+                            value={catalog.Name}
+                            onchange={handleCatalogNameChange}
+                            field-level-help=''
+                            autocomplete="off">
+                        </lightning-input>
+                    </li>
+                    <li class="slds-size_1-of-8 slds-p-vertical_xx-small">
+                        <lightning-icon 
+                            icon-name="utility:delete" 
+                            alternative-text="Удалить каталог" 
+                            title="Delete" 
+                            data-id={catalog.Id} 
+                            onclick={handleDeleteCatalog}>
+                        </lightning-icon>
+                    </li> 
+                </ul>
+            
+                <template for:each={catalog.ContainedCategories} for:item="category" for:index="categoryIndex">
+                    <ul key={catalog.Id} class="slds-grid slds-gutters table-tbody slds-box">
+                        <li class="slds-size_2-of-8 slds-p-vertical_xx-small">{category.Name}</li> 
+                        <li class="slds-size_2-of-8 slds-p-vertical_xx-small">
+                            <lightning-input
+                                data-name="categoryName"
+                                label='Название категории'
+                                class='slds-size_1-of-1'
+                                maxlength='255'
+                                type='text'
+                                data-id={category.Id}
+                                value={category.Name}
+                                onchange={handleCategoryNameChange}
+                                field-level-help=''
+                                autocomplete="off">
+                            </lightning-input>
+                        </li>
+                        <li class="slds-size_1-of-8 slds-p-vertical_xx-small">
+                            <lightning-icon 
+                                icon-name="utility:delete" 
+                                alternative-text="Удалить категорию" 
+                                title="Delete" 
+                                data-id={category.Id} 
+                                onclick={handleDeleteCategory}>
+                            </lightning-icon>
+                        </li> 
+                    </ul>
+                </template>
+
+                <lightning-input
+                    data-name="resourceName"
+                    data-id={catalog.Id}
+                    label=''
+                    class='slds-size_1-of-1'
+                    maxlength='255'
+                    type='text'
+                    value={newCatalogName}
+                    onchange={handleNewCategoryNameChange}
+                    field-level-help=''
+                    required
+                    autocomplete="off">
+                </lightning-input>
+
+                <lightning-button 
+                    variant="brand" 
+                    label='Добавить Категорию' 
+                    onclick={handleCreateCategories}>
+                </lightning-button>
+            </div>
         </template>
     </div>
 
@@ -36,6 +133,4 @@
             </ul>
         </template>
     </div>
-
-    добавить удалить переименовать подкатегорию
 </template>
